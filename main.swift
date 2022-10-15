@@ -8,44 +8,45 @@ let unsortedIntegers = [5, 1, 4, 2, 8]
 
 
 // Add your code below:
-func selectionSort(unsortedIntegers: [Int]) -> [Int] {
-    var array = unsortedIntegers
-    var totalSwap = 0
-    var passCount = 0
-    var swapCountPerPass: Int = 0
-    print("Pass: \(passCount), Swaps: \(swapCountPerPass)/\(totalSwap),", terminator: " ")
-    print("Array: \(unsortedIntegers)")
-
-    for i in 0..<array.count - 1  {
-        swapCountPerPass = 0
-        var min = i
-        
-        for j in i + 1..<array.count {
-            if array[i] > array[min] {
-                min = j
-            }
-        }
-        
-        if array[i] > array[min]{
-            let temp = array[i]
-            array[i] = array[min]
-            array[min] = temp
-        }
-        swapCountPerPass += 1
-            totalSwap += 1
-            swapCountPerPass += 1
-        
-     
-       
-        passCount += 1
-
-        print("Pass: \(passCount), Swaps: \(swapCountPerPass)/\(totalSwap),", terminator: " ")
-        print("Array: \(array)")
-
-    }
-    return array
-}
-let SortedIntegers = selectionSort(unsortedIntegers: unsortedIntegers)
-//print("(SortedIntegers)")
-        
-        
+func swap(integers: inout [Int], firstIndex: Int, secondIndex: Int) {                                                                                                           
+                                                                                                                                                                                   
+       let temp = integers[firstIndex]                                                                                                                                             
+      integers[firstIndex] = integers[secondIndex]                                                                                                                                
+       integers[secondIndex] = temp                                                                                                                                                
+   }                                                                                                                                                                               
+  func bubbleSort(unsortedIntegers: [Int]) -> [Int]{                                                                                                                              
+                                                                                                                                                                                  
+     var totalSwap = 0                                                                                                                                                           
+      var passCount = 0       
+       var sortingIntegers = unsortedIntegers                                                                                                                                      
+       var swapCountPerPass: Int = 0                                                                                                                                               
+                                                                                                                                                                                  
+     print("Pass: \(passCount), Swaps: \(swapCountPerPass)/\(totalSwap),", terminator: " ")                                                                                      
+     print("Array: \(unsortedIntegers)")                                                                                                                                         
+      repeat {                                                                                                                                                                    
+         swapCountPerPass = 0                                                                                                                                                    
+          //var sortingIntegers = unsortedIntegers                                                                                                                                
+          for index in 0 ..< sortingIntegers.count - 1 {                                                                                                                          
+              let thisIndex = index                                                                                                                                               
+               let nextIndex = index + 1                                                                                                                                           
+               let thisElement = sortingIntegers[thisIndex]                                                                                                                        
+               let nextElement = sortingIntegers[nextIndex]                                                                                                                        
+               if thisElement > nextElement {                                                                                                                                      
+                   swap(integers: &sortingIntegers, firstIndex: thisIndex, secondIndex: nextIndex)                                                                                 
+                 swapCountPerPass += 1                                                                                                                                           
+                   totalSwap += 1                                                                                                                                                  
+              }                                                                                                                                                                   
+                                                                                                                                                                                  
+                                                                                                                                                                                  
+          }                                                                                                                                                                       
+        passCount += 1 
+          print("Pass: \(passCount), Swaps: \(swapCountPerPass)/\(totalSwap),", terminator: " ")                                                                                  
+         print("Array: \(sortingIntegers)")                                                                                                                                      
+                                                                                                                                                                                 
+                                                                                                                                                                                 
+      } while swapCountPerPass != 0                                                                                                                                               
+                                                                                                                                                                                  
+       return sortingIntegers                                                                                                                                                      
+ }                                                                                                                                                                               
+  let sortedIntegers = bubbleSort(unsortedIntegers: unsortedIntegers)                                                                                                             
+  //print ("(sortedIntegers)")                     
